@@ -1,0 +1,22 @@
+services:
+  theappsense-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+    container_name: theappsense-frontend
+    env_file:
+      - .env.local
+    environment:
+      - VIRTUAL_HOST=theappsense.com,www.theappsense.com
+      - VIRTUAL_PORT=3000
+      - HSTS=off
+    networks:
+      - default
+      - global-frontend-network
+    restart: unless-stopped
+
+networks:
+  global-frontend-network:
+    external: true
+    name: ee-global-frontend-network

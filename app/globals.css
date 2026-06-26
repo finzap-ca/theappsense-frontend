@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* TheAppSense design tokens.
+       Light-first, calm and trustworthy: a cool slate neutral base, a deep
+       petrol-blue brand colour for actions, and an emerald "secure" signal.
+       These tokens drive every shadcn/ui-style component and are the single
+       source of truth for colour. */
+
+    --background: 0 0% 100%;
+    --foreground: 222 38% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 38% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 38% 14%;
+
+    /* Brand: deep petrol blue. Confident and technical without the generic
+       SaaS-purple/electric-blue look. */
+    --primary: 201 92% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 38% 18%;
+
+    --muted: 210 40% 97%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 201 90% 96%;
+    --accent-foreground: 201 92% 26%;
+
+    --success: 160 76% 30%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 32 85% 44%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 28% 90%;
+    --input: 214 28% 88%;
+    --ring: 201 92% 34%;
+
+    /* Inverted surface used by the footer and dark CTA bands. */
+    --ink: 222 44% 11%;
+    --ink-foreground: 210 30% 92%;
+    --ink-muted: 215 20% 65%;
+
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+  /* Respect users who prefer less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Subtle technical grid used behind hero / accent panels. */
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        hsl(var(--foreground) / 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-grid-ink {
+    background-image: linear-gradient(
+        to right,
+        hsl(0 0% 100% / 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, hsl(0 0% 100% / 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Long-form article typography (blog posts / legal pages). */
+  .prose-appsense {
+    @apply text-[15px] leading-7 text-foreground/90;
+  }
+  .prose-appsense h2 {
+    @apply mt-10 mb-3 font-display text-2xl font-semibold tracking-tight text-foreground;
+  }
+  .prose-appsense h3 {
+    @apply mt-8 mb-2 font-display text-lg font-semibold text-foreground;
+  }
+  .prose-appsense p {
+    @apply mb-4;
+  }
+  .prose-appsense ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5 marker:text-muted-foreground;
+  }
+  .prose-appsense ol {
+    @apply mb-4 list-decimal space-y-1.5 pl-5 marker:text-muted-foreground;
+  }
+  .prose-appsense a {
+    @apply font-medium text-primary underline underline-offset-4;
+  }
+  .prose-appsense strong {
+    @apply font-semibold text-foreground;
+  }
+}

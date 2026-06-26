@@ -1,0 +1,17 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+
+# Local configuration and credentials
+.env*
+!.env.example
+.deploy_key
+.deploy_key.pub
+
+# Tooling
+*.tsbuildinfo
+.DS_Store
+
+# Logs
+*.log
