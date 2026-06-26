@@ -37,8 +37,10 @@ Operational guide for the TheAppSense V2 frontend in `/opt/easyengine/sites/thea
 - Keep `theappsense-frontend` connected to `ee-global-frontend-network` so it can reach `theappsense-wp` and the global proxy can reach the frontend.
 - Keep `WORDPRESS_GRAPHQL_ENDPOINT` internal unless there is a clear reason to use public TLS from inside Docker.
 - Keep `/about` available and linked from the footer, but do not include it in the primary navigation.
+- Keep `theappsense.com` crawlable through `/robots.txt` and `/sitemap.xml`; `/api/` is excluded from crawling.
 
 ## Changelog
+- 2026-06-26: Published crawlable public robots/sitemap policy and kept the WordPress host noindexed.
 - 2026-06-26: Updated team LinkedIn profiles and moved the About link to footer-only navigation.
 - 2026-06-26: Added Tawk.to live chat widget to the public frontend.
 - 2026-06-26: Added TheAppSense V2 frontend deployment. Blog listing/detail and sitemap read published WordPress posts via WPGraphQL; non-blog pages remain code-owned.
