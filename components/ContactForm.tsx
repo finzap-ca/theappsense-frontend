@@ -36,12 +36,12 @@ interface FieldErrors {
 }
 
 const interests = [
-  { value: "new-website", label: "A new website" },
-  { value: "redesign", label: "Redesign an existing site" },
-  { value: "maintenance", label: "Care plan / maintenance" },
-  { value: "hosting", label: "Managed hosting" },
+  { value: "hosting", label: "Managed WordPress hosting" },
+  { value: "support", label: "WordPress support / fix errors" },
   { value: "malware", label: "Hacked site / malware removal" },
+  { value: "maintenance", label: "Care plan / maintenance" },
   { value: "speed", label: "Speed optimization" },
+  { value: "development", label: "WordPress / web development" },
   { value: "ecommerce", label: "Online store / WooCommerce" },
   { value: "other", label: "Something else" },
 ];
@@ -167,7 +167,7 @@ export function ContactForm({ defaultInterest }: { defaultInterest?: string }) {
         </div>
         <div className="space-y-2">
           <Label htmlFor="interest">What can we help with?</Label>
-          <Select name="interest" defaultValue={defaultInterest ?? "new-website"}>
+          <Select name="interest" defaultValue={defaultInterest ?? "hosting"}>
             <SelectTrigger id="interest">
               <SelectValue />
             </SelectTrigger>

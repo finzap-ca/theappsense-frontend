@@ -1,20 +1,24 @@
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { company } from "@/data/site";
-import { contactCta } from "@/data/navigation";
+import { ChatButton } from "@/components/ChatButton";
+import { primaryCta } from "@/data/navigation";
 
 /**
- * The site's recurring final call to action. Reused on most pages so the
- * primary action and tone stay consistent. CMS-managed later (reusable CTA).
+ * The site's recurring closing call to action. Hosting-led by default (the
+ * product), with live chat as the "talk to us now" action. Pages can override
+ * the copy or the primary action where a different intent fits (e.g. the
+ * portfolio page). CMS-managed later (reusable CTA block).
  */
 export function CtaSection({
-  title = "Let's talk about your website",
-  description = "Tell us what you need, a new build, a fix, faster pages, or someone reliable to look after the site you have. We'll reply with honest next steps.",
+  title = "Hand your WordPress site to people who'll keep it running",
+  description = "Move to fully managed hosting and we'll handle speed, security, backups, and updates for you, with free migration and no lock-in. A faster, safer site, and a real person a click away.",
+  primaryAction = primaryCta,
 }: {
   title?: string;
   description?: string;
+  primaryAction?: { label: string; href: string };
 }) {
   return (
     <section className="bg-ink text-ink-foreground">
@@ -30,23 +34,20 @@ export function CtaSection({
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" variant="inverted">
-                <Link href={contactCta.href}>
-                  {contactCta.label}
+                <Link href={primaryAction.href}>
+                  {primaryAction.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
-              >
-                <a href={`tel:${company.phoneHref}`}>
-                  <Phone className="h-4 w-4" />
-                  {company.phone}
-                </a>
-              </Button>
+              <ChatButton label="Chat with us" />
             </div>
+            <p className="mt-4 flex items-center gap-2 text-sm text-ink-muted">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+              </span>
+              We&apos;re online and usually reply in minutes.
+            </p>
           </div>
         </div>
       </div>

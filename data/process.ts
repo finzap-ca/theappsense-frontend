@@ -1,13 +1,13 @@
 import {
   MessagesSquare,
-  PencilRuler,
-  Hammer,
-  LifeBuoy,
+  ArrowRightLeft,
+  ShieldCheck,
+  Coffee,
   type LucideIcon,
 } from "lucide-react";
 
 /**
- * How an engagement works, shown on the homepage and about page.
+ * How working with us works, shown on the homepage and about page.
  * CMS-managed later (reusable content block).
  */
 
@@ -21,30 +21,30 @@ export interface ProcessStep {
 export const engagementProcess: ProcessStep[] = [
   {
     number: "01",
-    title: "Talk it through",
+    title: "Tell us about your site",
     description:
-      "Tell us what you need. We listen, ask the right questions, and come back with honest, specific next steps, not a generic pitch.",
+      "Tell us what's going on, a slow site, a hack, or just no one looking after it. We listen and recommend the right fit, honestly, with no pressure.",
     icon: MessagesSquare,
   },
   {
     number: "02",
-    title: "Plan & quote",
+    title: "We move it over, free",
     description:
-      "We scope the work clearly and give you a realistic timeline and a fixed quote, so you know exactly what you're getting before we start.",
-    icon: PencilRuler,
+      "We migrate your site to our managed hosting at no cost, then set up backups, security, and monitoring, with near-zero downtime.",
+    icon: ArrowRightLeft,
   },
   {
     number: "03",
-    title: "Build & review",
+    title: "We look after it",
     description:
-      "We do the work in reviewable stages, keep you updated in plain language, and test thoroughly across devices before anything goes live.",
-    icon: Hammer,
+      "Updates, security, backups, and speed are handled for you. When something needs attention, you reach a real person, fast.",
+    icon: ShieldCheck,
   },
   {
     number: "04",
-    title: "Launch & look after",
+    title: "You focus on the business",
     description:
-      "We launch carefully and stay available. With a care plan, we keep the site fast, updated, and secure long after go-live.",
-    icon: LifeBuoy,
+      "Your site stays fast, secure, and online, and you stop thinking about WordPress upkeep. That's the whole point.",
+    icon: Coffee,
   },
 ];

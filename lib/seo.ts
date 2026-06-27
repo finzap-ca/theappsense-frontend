@@ -66,7 +66,6 @@ export function organizationSchema() {
     name: company.name,
     legalName: company.legalName,
     url: SITE_URL,
-    email: company.email,
     telephone: company.phone,
     description: company.shortDescription,
     areaServed: company.areaServed,

@@ -37,23 +37,19 @@ export interface Company {
 
 export const company: Company = {
   name: "TheAppSense",
-  legalName: "Infinite Loop Corporation",
+  legalName: "MT Consultancy",
   email: "sales@theappsense.com",
   phone: "+1 (437) 888-4248",
   phoneHref: "+14378884248",
   hours: "7 AM to 9 PM ET, Monday to Friday",
   timezone: "Eastern Time",
   shortDescription:
-    "TheAppSense provides fast, secure, fully managed WordPress hosting for small and growing businesses across Canada and the U.S., with care, security, malware removal, and support included.",
-  areaServed: ["Canada", "United States"],
+    "TheAppSense provides fast, secure, fully managed WordPress hosting for small and growing businesses, with care, security, malware removal, and support included.",
+  areaServed: ["Worldwide"],
   locations: [
     {
-      label: "Canada",
+      label: "Toronto, Canada",
       lines: ["510 Curran Place", "Mississauga, ON L5B 0J8"],
-    },
-    {
-      label: "United States",
-      lines: ["1280 Lexington Ave", "New York, NY 10028"],
     },
   ],
   // No social profiles are linked until verified accounts are confirmed.

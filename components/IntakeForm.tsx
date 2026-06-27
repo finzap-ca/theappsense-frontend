@@ -7,12 +7,12 @@ import {
   ChevronRight,
   Loader2,
   AlertTriangle,
-  Phone,
   CheckCircle2,
   MessageSquare,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { ChatButton } from "@/components/ChatButton";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { company } from "@/data/site";
 import {
   type IntakeIntent,
   type Choice,
@@ -258,12 +257,7 @@ export function IntakeForm({
           method. If it&apos;s urgent, talk to us right now.
         </p>
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
-          <Button asChild size="lg">
-            <a href={`tel:${company.phoneHref}`}>
-              <Phone className="h-4 w-4" />
-              Talk to an expert now
-            </a>
-          </Button>
+          <ChatButton label="Chat with an expert now" />
         </div>
         <p className="mt-4 text-xs text-muted-foreground">
           Demo only, your details were not sent anywhere yet.
