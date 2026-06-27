@@ -38,3 +38,7 @@ export const TAWK_PROPERTY_ID =
 export const TAWK_WIDGET_ID =
   process.env.NEXT_PUBLIC_TAWK_WIDGET_ID ?? "1i3r21sll";
 export const HAS_TAWK = TAWK_PROPERTY_ID.length > 0 && TAWK_WIDGET_ID.length > 0;
+
+/** Google Tag Manager container identifier. Optional until production env is set. */
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
+export const HAS_GTM = GTM_ID.length > 0;

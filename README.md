@@ -27,8 +27,9 @@ npm run lint       # eslint (next/core-web-vitals)
 npm run typecheck  # tsc --noEmit
 ```
 
-Copy `.env.example` to `.env.local` to override the canonical site URL or
-connect a WordPress GraphQL endpoint.
+Copy `.env.example` to `.env.local` to override the canonical site URL,
+connect WordPress GraphQL, enable Tawk.to, or set `NEXT_PUBLIC_GTM_ID` for
+Google Tag Manager.
 
 ## Architecture
 
@@ -57,6 +58,15 @@ Each repository function is the one place to later fetch from WordPress via
 `lib/graphql` and map into the same typed shapes — **no page component changes
 required**. Likely future CMS collections: services, case studies, posts, FAQs,
 testimonials, pricing, team, global contact info, reusable CTAs.
+
+## Tracking and lead handoff
+
+Google Tag Manager is optional and controlled by `NEXT_PUBLIC_GTM_ID`. When set,
+the app loads GTM globally and exposes `window.dataLayer` for conversion events.
+
+The malware landing page form pushes a GA4-style `generate_lead` payload and
+passes the same validated lead context into Tawk.to before opening chat. Phone is
+optional and uses browser-locale country detection with a manual selector.
 
 ## Known remaining integrations
 

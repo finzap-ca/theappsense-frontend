@@ -8,6 +8,7 @@ import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
 import { company } from "@/data/site";
 import { TawkToScript } from "@/components/integrations/TawkToScript";
+import { GoogleTagManager } from "@/components/integrations/GoogleTagManager";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const inter = Inter({
@@ -48,6 +49,7 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
       <body className="min-h-screen">
+        <GoogleTagManager />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <a
           href="#main"

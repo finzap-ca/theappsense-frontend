@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 interface TawkApi {
   maximize?: () => void;
   toggle?: () => void;
+  setAttributes?: (attributes: Record<string, string>, callback?: (error?: unknown) => void) => void;
+  addEvent?: (eventName: string, metadata?: Record<string, string>, callback?: (error?: unknown) => void) => void;
 }
 
 declare global {
