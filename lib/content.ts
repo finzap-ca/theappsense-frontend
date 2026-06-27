@@ -5,7 +5,7 @@
  * the existing WordPress install through WPGraphQL only.
  */
 import { services, type Service } from "@/data/services";
-import { caseStudies, type CaseStudy } from "@/data/work";
+import { clients, type Client } from "@/data/clients";
 import { generalFaqs, type Faq } from "@/data/faqs";
 import { type Post } from "@/data/posts";
 import {
@@ -21,8 +21,8 @@ export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);
 }
 
-export function getCaseStudies(): CaseStudy[] {
-  return caseStudies;
+export function getClients(): Client[] {
+  return clients;
 }
 
 export async function getPosts(): Promise<Post[]> {

@@ -6,14 +6,27 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-export function PricingCard({ plan }: { plan: PricingPlan }) {
+export function PricingCard({
+  plan,
+  billing = "annual",
+}: {
+  plan: PricingPlan;
+  billing?: "monthly" | "annual";
+}) {
+  const hasToggle = Boolean(plan.annualPrice);
+  const price =
+    hasToggle && billing === "annual" ? plan.annualPrice! : plan.monthlyPrice;
+  const subNote = hasToggle
+    ? billing === "annual"
+      ? "billed annually"
+      : "billed monthly"
+    : plan.note;
+
   return (
     <div
       className={cn(
         "relative flex flex-col rounded-2xl border bg-card p-6 shadow-sm sm:p-8",
-        plan.highlighted
-          ? "border-primary ring-1 ring-primary"
-          : "border-border",
+        plan.highlighted ? "border-primary ring-1 ring-primary" : "border-border",
       )}
     >
       {plan.badge && (
@@ -28,7 +41,7 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
 
       <div className="mt-5 flex items-baseline gap-1">
         <span className="font-display text-4xl font-bold tracking-tight text-foreground">
-          {plan.price}
+          {price}
         </span>
         {plan.period && (
           <span className="text-sm font-medium text-muted-foreground">
@@ -36,8 +49,8 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
           </span>
         )}
       </div>
-      {plan.note && (
-        <p className="mt-1 text-xs text-muted-foreground">{plan.note}</p>
+      {subNote && (
+        <p className="mt-1 text-xs text-muted-foreground">{subNote}</p>
       )}
 
       <Button

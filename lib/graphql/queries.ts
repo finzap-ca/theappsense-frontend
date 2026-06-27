@@ -4,7 +4,7 @@
  * These are intentionally inert today: the content repository (`lib/content`)
  * serves hard-coded data from `data/`. When WordPress is connected, the
  * repository functions will run these documents through `fetchGraphQL` and map
- * the responses into the existing typed shapes (`Service`, `Post`, `CaseStudy`…),
+ * the responses into the existing typed shapes (`Service`, `Post`, `Client`…),
  * so no page component needs to change.
  *
  * They live here, behind the data-access layer, so GraphQL never leaks into

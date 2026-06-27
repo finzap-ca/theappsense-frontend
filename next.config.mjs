@@ -36,10 +36,11 @@ const nextConfig = {
       { source: "/expertise", destination: "/services", permanent: true },
       { source: "/expertise/:slug*", destination: "/services", permanent: true },
 
-      // Portfolio -> work
-      { source: "/portfolio", destination: "/work", permanent: true },
-      { source: "/best-portfolio", destination: "/work", permanent: true },
-      { source: "/portfolio/:slug*", destination: "/work", permanent: true },
+      // Portfolio / work -> clients
+      { source: "/work", destination: "/clients", permanent: true },
+      { source: "/portfolio", destination: "/clients", permanent: true },
+      { source: "/best-portfolio", destination: "/clients", permanent: true },
+      { source: "/portfolio/:slug*", destination: "/clients", permanent: true },
 
       // Team -> about
       { source: "/our-team", destination: "/about", permanent: true },

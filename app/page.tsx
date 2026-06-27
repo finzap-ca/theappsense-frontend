@@ -1,16 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Phone, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { ChatButton } from "@/components/ChatButton";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/sections/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { ServiceCard } from "@/components/sections/ServiceCard";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TrustStrip } from "@/components/sections/TrustStrip";
-import { PricingCard } from "@/components/sections/PricingCard";
-import { WorkCard } from "@/components/sections/WorkCard";
+import { PricingTable } from "@/components/sections/PricingTable";
+import { ClientCard } from "@/components/sections/ClientCard";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ArticleCard } from "@/components/sections/ArticleCard";
 import { Faq } from "@/components/sections/Faq";
@@ -20,7 +21,7 @@ import { buildMetadata, faqSchema } from "@/lib/seo";
 import {
   getServices,
   getServiceBySlug,
-  getCaseStudies,
+  getClients,
   getPosts,
   getGeneralFaqs,
 } from "@/lib/content";
@@ -35,16 +36,16 @@ export const metadata = buildMetadata({
 });
 
 const problems = [
-  "Your site is slow, dated, or hard to update yourself.",
-  "You were hacked, flagged by Google, or hit with malware.",
+  "Your hosting is slow, or your site goes down at the worst time.",
+  "You were hacked, hit with malware, or flagged by Google.",
   "Updates, backups, and security are nobody's job right now.",
-  "You need a new site, or a redesign that actually converts.",
+  "Something breaks and there's no one reliable to call.",
 ];
 
 export default async function HomePage() {
   const services = getServices();
   const hosting = getServiceBySlug("managed-wordpress-hosting");
-  const caseStudies = getCaseStudies().slice(0, 3);
+  const clients = getClients().slice(0, 3);
   const posts = (await getPosts()).slice(0, 3);
   const faqs = getGeneralFaqs();
 
@@ -76,12 +77,7 @@ export default async function HomePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href={`tel:${company.phoneHref}`}>
-                  <Phone className="h-4 w-4" />
-                  {company.phone}
-                </a>
-              </Button>
+              <ChatButton label="Chat with us" />
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
               {[
@@ -158,10 +154,8 @@ export default async function HomePage() {
                   {hosting.plansNote}
                 </p>
               )}
-              <div className="mt-10 grid gap-6 lg:grid-cols-3">
-                {hosting.plans.map((plan) => (
-                  <PricingCard key={plan.name} plan={plan} />
-                ))}
+              <div className="mt-10">
+                <PricingTable plans={hosting.plans} />
               </div>
               <div className="mt-8 text-center">
                 <Button asChild variant="outline">
@@ -198,8 +192,8 @@ export default async function HomePage() {
           <div>
             <SectionHeading
               eyebrow="Sound familiar?"
-              title="The website problems we fix every week"
-              description="Most businesses don't need more buzzwords, they need someone reliable to handle the parts of a website that quietly go wrong."
+              title="The WordPress headaches we take off your plate"
+              description="Most businesses don't need another agency, they need someone dependable to handle the parts of a WordPress site that quietly go wrong."
             />
             <Button asChild className="mt-8" variant="outline">
               <Link href="/services">
@@ -226,31 +220,31 @@ export default async function HomePage() {
       <Section>
         <SectionHeading
           eyebrow="How we work"
-          title="Straightforward from first call to long after launch"
-          description="Clear scope, honest timelines, plain-language updates, and someone who's still there when you need a change months later."
+          title="Easy to start, looked after for the long run"
+          description="Free migration to get going, plain-language updates along the way, and a real person who's still there when you need a hand months later."
         />
         <div className="mt-12">
           <ProcessSteps steps={engagementProcess} />
         </div>
       </Section>
 
-      {/* Work */}
+      {/* Our clients */}
       <Section tone="muted">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Selected work"
-            title="A look at what we've built"
+            eyebrow="Our clients"
+            title="Businesses that trust us with their site"
           />
           <Button asChild variant="ghost">
-            <Link href="/work">
-              View all work
+            <Link href="/clients">
+              Meet our clients
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <WorkCard key={study.slug} study={study} />
+          {clients.map((client) => (
+            <ClientCard key={client.slug} client={client} />
           ))}
         </div>
       </Section>
@@ -288,17 +282,7 @@ export default async function HomePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
-              >
-                <a href={`tel:${company.phoneHref}`}>
-                  <Phone className="h-4 w-4" />
-                  Call now
-                </a>
-              </Button>
+              <ChatButton label="Chat with us now" />
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">

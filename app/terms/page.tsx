@@ -76,9 +76,8 @@ export default function TermsPage() {
 
           <h2>Contact</h2>
           <p>
-            Questions about these terms? Email{" "}
-            <a href={`mailto:${company.email}`}>{company.email}</a> or call{" "}
-            <a href={`tel:${company.phoneHref}`}>{company.phone}</a>.
+            Questions about these terms? Use our{" "}
+            <a href="/contact">contact page</a>.
           </p>
         </div>
       </Section>

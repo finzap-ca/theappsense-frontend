@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { ArrowRight, Check, Phone, AlertTriangle } from "lucide-react";
+import { ArrowRight, Check, AlertTriangle } from "lucide-react";
 
 import { type Service } from "@/data/services";
-import { company } from "@/data/site";
 import { contactCta } from "@/data/navigation";
 import { Button } from "@/components/ui/button";
+import { ChatButton } from "@/components/ChatButton";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { FeatureGrid } from "./FeatureGrid";
-import { PricingCard } from "./PricingCard";
+import { PricingTable } from "./PricingTable";
 import { Testimonials } from "./Testimonials";
 import { Faq } from "./Faq";
 import { RelatedServices } from "./RelatedServices";
@@ -63,12 +63,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                     </Link>
                   </Button>
                 )}
-                <Button asChild size="lg" variant="outline">
-                  <a href={`tel:${company.phoneHref}`}>
-                    <Phone className="h-4 w-4" />
-                    {company.phone}
-                  </a>
-                </Button>
+                <ChatButton label="Chat with us" />
               </div>
             </div>
 
@@ -179,17 +174,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </Link>
               </Button>
             )}
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/20 text-ink-foreground hover:bg-white/10 hover:text-ink-foreground"
-            >
-              <a href={`tel:${company.phoneHref}`}>
-                <Phone className="h-4 w-4" />
-                Call now
-              </a>
-            </Button>
+            <ChatButton label="Chat with an expert now" />
           </div>
         </Section>
       )}
@@ -249,6 +234,44 @@ export function ServiceDetail({ service }: { service: Service }) {
         </Section>
       )}
 
+      {/* Infrastructure / "under the hood" (e.g. hosting) */}
+      {service.infrastructure && (
+        <Section tone="ink">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
+              Infrastructure
+            </p>
+            <h2 className="text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              {service.infrastructure.heading}
+            </h2>
+            <p className="mt-4 text-pretty text-lg text-ink-muted">
+              {service.infrastructure.body}
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {service.infrastructure.items.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-white/10 bg-white/5 p-6"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-ink-foreground">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 font-display text-base font-semibold text-ink-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </Section>
+      )}
+
       {/* Pricing (only when the service defines plans) */}
       {service.plans && service.plans.length > 0 && (
         <Section tone="muted" id="pricing">
@@ -258,10 +281,8 @@ export function ServiceDetail({ service }: { service: Service }) {
             title="Simple, transparent pricing"
             description={service.plansNote}
           />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {service.plans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} />
-            ))}
+          <div className="mt-12">
+            <PricingTable plans={service.plans} />
           </div>
         </Section>
       )}

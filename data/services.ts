@@ -10,6 +10,11 @@ import {
   RefreshCw,
   Plug,
   LifeBuoy,
+  Boxes,
+  Database,
+  Archive,
+  Globe,
+  Lock,
   type LucideIcon,
 } from "lucide-react";
 import { type IntakeIntent } from "@/data/intake";
@@ -56,11 +61,13 @@ export interface PricingPlan {
   name: string;
   /** For-this-audience one-liner. */
   tagline: string;
-  /** Display price, e.g. "$24.99" or "Custom". */
-  price: string;
+  /** Monthly-billing price, e.g. "$24.99". For custom plans, the label e.g. "Custom". */
+  monthlyPrice: string;
+  /** Per-month price when billed annually, e.g. "$19.99". Omit for custom plans. */
+  annualPrice?: string;
   /** Billing cadence suffix, e.g. "/mo". Omit for custom plans. */
   period?: string;
-  /** Secondary line, e.g. annual pricing or a note. */
+  /** Note for custom plans shown in place of a price cadence. */
   note?: string;
   features: string[];
   cta: { label: string; href: string };
@@ -98,6 +105,12 @@ export interface Service {
   plans?: PricingPlan[];
   /** Optional note shown above the pricing grid. */
   plansNote?: string;
+  /** Optional "under the hood" infrastructure detail (e.g. hosting). */
+  infrastructure?: {
+    heading: string;
+    body: string;
+    items: ServiceFeature[];
+  };
   /** Show the customer-testimonials band on this service page. */
   showTestimonials?: boolean;
   /** Optional "errors we fix" grid (e.g. the WordPress support page). */
@@ -126,7 +139,7 @@ export const services: Service[] = [
     meta: {
       title: "WordPress Development Services",
       description:
-        "Custom WordPress websites built clean and maintainable, fast, secure, and easy to edit. No page-builder bloat. Built for businesses across Canada and the U.S.",
+        "Custom WordPress websites built clean and maintainable, fast, secure, and easy to edit. No page-builder bloat. Built for businesses of all sizes.",
     },
     hero: {
       eyebrow: "WordPress Development",
@@ -487,21 +500,21 @@ export const services: Service[] = [
       },
     ],
     plansNote:
-      "Every plan runs on our Docker + Nginx stack behind the Cloudflare CDN, with free SSL, free malware removal, and free migration. Save up to four months with annual billing.",
+      "Every plan runs on our containerised stack behind the Cloudflare CDN, with Let's Encrypt SSL, off-site backups, and free migration. Free malware removal is for sites we host, under fair use.",
     plans: [
       {
         name: "Starter",
         tagline: "For a single small business site.",
-        price: "$24.99",
+        monthlyPrice: "$24.99",
+        annualPrice: "$19.99",
         period: "/mo",
-        note: "or $19.99/mo billed annually",
         features: [
           "1 WordPress site",
           "10 GB SSD storage",
           "50 GB monthly bandwidth",
-          "Free SSL & free malware removal",
-          "Automated backups",
-          "Email support",
+          "Let's Encrypt SSL & free malware removal",
+          "Off-site backups to Amazon S3",
+          "Live chat support",
           "SFTP, phpMyAdmin & WP-CLI",
         ],
         cta: { label: "Get started", href: "/contact" },
@@ -509,41 +522,83 @@ export const services: Service[] = [
       {
         name: "Business",
         tagline: "For growing sites that need more headroom.",
-        price: "$49.99",
+        monthlyPrice: "$49.99",
+        annualPrice: "$39.99",
         period: "/mo",
-        note: "or $39.99/mo billed annually",
         highlighted: true,
         badge: "Most popular",
         features: [
           "3 WordPress sites",
           "30 GB SSD storage",
           "200 GB monthly bandwidth",
-          "Free SSL & free malware removal",
+          "Let's Encrypt SSL & free malware removal",
+          "Redis object cache",
           "Active malware monitoring",
-          "Daily backups",
+          "Daily off-site backups to Amazon S3",
           "Priority chat support",
-          "SFTP, phpMyAdmin & WP-CLI",
         ],
         cta: { label: "Get started", href: "/contact" },
       },
       {
         name: "Agency",
         tagline: "For multiple sites or client portfolios.",
-        price: "Custom",
+        monthlyPrice: "Custom",
         note: "Tailored to your sites and traffic",
         features: [
           "Multiple WordPress sites",
           "200 GB SSD storage",
           "Unmetered bandwidth",
-          "Free SSL & free malware removal",
+          "Let's Encrypt SSL & free malware removal",
+          "Redis object cache",
           "Active malware monitoring",
-          "Daily backups",
+          "Daily off-site backups to Amazon S3",
           "Priority support",
-          "SFTP, phpMyAdmin & WP-CLI",
         ],
         cta: { label: "Get in touch", href: "/contact" },
       },
     ],
+    infrastructure: {
+      heading: "What's under the hood",
+      body: "Managed hosting that's genuinely engineered, not a reseller account with a logo on it. Here's the stack your site runs on.",
+      items: [
+        {
+          title: "Containerised & isolated",
+          description:
+            "Every site runs in its own container, so a busy neighbour or a compromised plugin can never spill over onto you.",
+          icon: Boxes,
+        },
+        {
+          title: "Redis object cache",
+          description:
+            "On Business and Agency plans, Redis caches database queries so dynamic pages and WooCommerce stay fast under load.",
+          icon: Database,
+        },
+        {
+          title: "Off-site backups to Amazon S3",
+          description:
+            "Automated backups are stored off-site in Amazon S3, so your data survives even if the server doesn't, and restores are quick.",
+          icon: Archive,
+        },
+        {
+          title: "Cloudflare CDN",
+          description:
+            "Served through Cloudflare's global network so visitors load your site from a server near them, wherever they are.",
+          icon: Globe,
+        },
+        {
+          title: "Nginx + server-level caching",
+          description:
+            "A performance-tuned Nginx stack with caching built in, so pages are served fast without a pile of plugins.",
+          icon: Gauge,
+        },
+        {
+          title: "Let's Encrypt SSL, auto-renewed",
+          description:
+            "Free Let's Encrypt SSL on every site, issued and renewed automatically so HTTPS never lapses.",
+          icon: Lock,
+        },
+      ],
+    },
     faqs: [
       {
         question: "Is migrating my site really free?",
@@ -553,12 +608,12 @@ export const services: Service[] = [
       {
         question: "What infrastructure do you run on?",
         answer:
-          "Sites run on a performance-tuned Docker and Nginx stack, served through the Cloudflare CDN's global network (260+ locations) so content loads quickly from a server near each visitor.",
+          "Each site runs in its own container on a performance-tuned Nginx stack, with Redis object caching on Business and Agency plans, off-site backups to Amazon S3, and Let's Encrypt SSL. Everything sits behind the Cloudflare CDN so it loads fast worldwide.",
       },
       {
         question: "What happens if my site gets hacked while you host it?",
         answer:
-          "Free malware removal and active monitoring are part of managed hosting. If something gets through, we clean it up and restore from backup, you're not left to deal with it alone. We do ask that you keep plugins and themes updated to prevent recurring infections.",
+          "Malware removal is included with hosting, under fair use. If something gets through, we clean it up and restore from backup, you're not left to deal with it alone. We do ask that you keep plugins and themes updated; chronic reinfection from outdated or nulled plugins isn't covered indefinitely.",
       },
       {
         question: "How often are backups taken?",
@@ -756,7 +811,12 @@ export const services: Service[] = [
       {
         question: "How much does malware removal cost?",
         answer:
-          "It's a flat one-time fee of $99 USD per site. That covers the full cleanup, security hardening, and a reindex request. There are no hidden upsells.",
+          "It's a flat one-time fee of $99 USD per site for sites hosted elsewhere. That covers the full cleanup, security hardening, and a reindex request, with no hidden upsells.",
+      },
+      {
+        question: "Is it free if you host my site?",
+        answer:
+          "Yes. Malware removal is included with our managed hosting, under fair use, so for sites we host there's no charge. The flat $99 is for sites hosted elsewhere, and it's a good reason to move to us so you're covered going forward.",
       },
       {
         question: "How long does it take?",

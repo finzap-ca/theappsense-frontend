@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 import { Logo } from "./Logo";
 import { footerNav } from "@/data/navigation";
@@ -13,31 +13,13 @@ export function Footer() {
         <div className="space-y-4 lg:col-span-2">
           <Logo variant="inverted" />
           <p className="max-w-xs text-sm text-ink-muted">
-            WordPress and web development, managed hosting, security, and care
-            plans for small and growing businesses across Canada and the U.S.
+            Fully managed WordPress hosting, security, malware removal, and care
+            plans for small and growing businesses.
           </p>
           <ul className="space-y-2 text-sm">
-            <li>
-              <a
-                href={`mailto:${company.email}`}
-                className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-ink-foreground"
-              >
-                <Mail className="h-4 w-4" />
-                {company.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={`tel:${company.phoneHref}`}
-                className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-ink-foreground"
-              >
-                <Phone className="h-4 w-4" />
-                {company.phone}
-              </a>
-            </li>
             <li className="inline-flex items-start gap-2 text-ink-muted">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>Greater Toronto Area · Serving Canada &amp; the U.S.</span>
+              <span>Greater Toronto Area, Canada</span>
             </li>
           </ul>
         </div>

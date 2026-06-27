@@ -43,8 +43,8 @@ export default function PrivacyPage() {
           <h2>Information we collect</h2>
           <p>
             We only collect information you choose to give us. When you submit our
-            contact form or email us, we receive the details you provide, such as
-            your name, email address, phone number, and your message. We use this
+            contact form, we receive the details you provide, such as your name,
+            email address, phone number, and your message. We use this
             solely to respond to your enquiry and, if you become a client, to
             deliver the work you&apos;ve asked for.
           </p>
@@ -84,15 +84,14 @@ export default function PrivacyPage() {
           <h2>Your choices</h2>
           <p>
             You can ask us what information we hold about you, request a correction,
-            or ask us to delete it. To do any of these, email us at{" "}
-            <a href={`mailto:${company.email}`}>{company.email}</a>.
+            or ask us to delete it. To do any of these, reach us through our{" "}
+            <a href="/contact">contact page</a>.
           </p>
 
           <h2>Contact</h2>
           <p>
-            Questions about this policy? Reach us at{" "}
-            <a href={`mailto:${company.email}`}>{company.email}</a> or{" "}
-            <a href={`tel:${company.phoneHref}`}>{company.phone}</a>.
+            Questions about this policy? Reach us through our{" "}
+            <a href="/contact">contact page</a>.
           </p>
         </div>
       </Section>

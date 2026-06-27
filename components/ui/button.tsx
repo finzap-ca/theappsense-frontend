@@ -18,6 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        /* Live-chat / "we're online" actions. */
+        success:
+          "bg-success text-success-foreground hover:bg-success/90 shadow-sm",
         /* For dark CTA bands / footer on the ink surface. */
         inverted:
           "bg-background text-foreground hover:bg-background/90 shadow-sm",
