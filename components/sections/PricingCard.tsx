@@ -9,17 +9,29 @@ import { cn } from "@/lib/utils";
 export function PricingCard({
   plan,
   billing = "annual",
+  bundle = false,
 }: {
   plan: PricingPlan;
   billing?: "monthly" | "annual";
+  /** Apply the "hosted with us" bundle discount where available. */
+  bundle?: boolean;
 }) {
   const hasToggle = Boolean(plan.annualPrice);
+  const useBundle = bundle && Boolean(plan.monthlyBundlePrice);
   const price =
-    hasToggle && billing === "annual" ? plan.annualPrice! : plan.monthlyPrice;
+    billing === "annual"
+      ? useBundle
+        ? plan.annualBundlePrice!
+        : hasToggle
+          ? plan.annualPrice!
+          : plan.monthlyPrice
+      : useBundle
+        ? plan.monthlyBundlePrice!
+        : plan.monthlyPrice;
   const subNote = hasToggle
-    ? billing === "annual"
-      ? "billed annually"
-      : "billed monthly"
+    ? `${billing === "annual" ? "billed annually" : "billed monthly"}${
+        useBundle ? ", with our hosting" : ""
+      }`
     : plan.note;
 
   return (

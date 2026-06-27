@@ -65,6 +65,10 @@ export interface PricingPlan {
   monthlyPrice: string;
   /** Per-month price when billed annually, e.g. "$19.99". Omit for custom plans. */
   annualPrice?: string;
+  /** Discounted monthly price when bundled with our hosting. */
+  monthlyBundlePrice?: string;
+  /** Discounted per-month annual price when bundled with our hosting. */
+  annualBundlePrice?: string;
   /** Billing cadence suffix, e.g. "/mo". Omit for custom plans. */
   period?: string;
   /** Note for custom plans shown in place of a price cadence. */
@@ -702,21 +706,101 @@ export const services: Service[] = [
           "You get a plain-language summary of what we did, so you always know your site is being looked after.",
       },
     ],
+    plansNote:
+      "Hands-on care for your WordPress site, whether we host it or someone else does. Save $20/mo on any plan when your site is hosted with us. Extra work beyond your plan's hours is billed at $89/hr, and significantly outdated sites may need a one-time onboarding fee.",
+    plans: [
+      {
+        name: "Care Essentials",
+        tagline: "Keep a small site updated, backed up, and watched.",
+        monthlyPrice: "$99",
+        annualPrice: "$82",
+        monthlyBundlePrice: "$79",
+        annualBundlePrice: "$62",
+        period: "/mo",
+        features: [
+          "Tested WordPress, plugin & theme updates",
+          "Security & malware monitoring",
+          "Daily off-site backups",
+          "Uptime monitoring",
+          "Monthly plain-language report",
+          "30 minutes of fixes & small changes",
+        ],
+        cta: { label: "Get started", href: "/contact" },
+      },
+      {
+        name: "Care Pro",
+        tagline: "For growing business sites that need a real hand.",
+        monthlyPrice: "$199",
+        annualPrice: "$166",
+        monthlyBundlePrice: "$179",
+        annualBundlePrice: "$146",
+        period: "/mo",
+        highlighted: true,
+        badge: "Most popular",
+        features: [
+          "Everything in Care Essentials",
+          "Priority support",
+          "Staging site for safe changes",
+          "Monthly performance & basic SEO checks",
+          "1 to 2 hours of edits & fixes",
+          "Faster response times",
+        ],
+        cta: { label: "Get started", href: "/contact" },
+      },
+      {
+        name: "Care Premium",
+        tagline: "For high-traffic and WooCommerce stores.",
+        monthlyPrice: "$399",
+        annualPrice: "$332",
+        monthlyBundlePrice: "$379",
+        annualBundlePrice: "$312",
+        period: "/mo",
+        features: [
+          "Everything in Care Pro",
+          "WooCommerce / e-commerce care",
+          "A dedicated point of contact",
+          "Advanced monitoring & priority SLA",
+          "4 hours of edits & fixes",
+          "Quarterly strategy check-in",
+        ],
+        cta: { label: "Get started", href: "/contact" },
+      },
+      {
+        name: "Agency",
+        tagline: "For multiple sites or a client portfolio.",
+        monthlyPrice: "Custom",
+        note: "Tailored to your sites and volume",
+        features: [
+          "Care for multiple sites",
+          "Volume pricing",
+          "A dedicated account manager",
+          "Shared workspace and reporting",
+          "Custom SLAs",
+          "White-label options",
+        ],
+        cta: { label: "Get in touch", href: "/contact" },
+      },
+    ],
     faqs: [
       {
         question: "What's included in a care plan?",
         answer:
-          "Every plan covers updates, backups, security and uptime monitoring, and a set number of support hours for fixes and small changes each month. We'll recommend a tier based on your site.",
+          "Every plan covers tested updates, backups, security and uptime monitoring, and a set amount of support time for fixes and small changes each month. Higher tiers add staging, performance and SEO checks, e-commerce care, and a dedicated contact.",
       },
       {
         question: "How much do care plans cost?",
         answer:
-          "Plans are billed monthly and priced by your site's size and how much support you want. Get in touch for a quote, there's no long-term lock-in.",
+          "Care Essentials is $99/mo, Care Pro $199/mo, and Care Premium $399/mo, with about two months free on annual billing. Save $20/mo on any plan when your site is hosted with us. There's no long-term lock-in.",
+      },
+      {
+        question: "Do I have to host with you to get a care plan?",
+        answer:
+          "No. We'll look after your site wherever it's hosted. If you host with us, you save $20/mo and we can act faster because the backups and infrastructure are already ours.",
       },
       {
         question: "What if I need a bigger change, like a new page?",
         answer:
-          "Larger work beyond your monthly hours is quoted separately and billed at a clear rate, so there are no surprises.",
+          "Larger work beyond your monthly hours is billed at a clear $89/hour, quoted up front, so there are no surprises.",
       },
     ],
     relatedSlugs: ["managed-wordpress-hosting", "malware-removal", "speed-optimization"],
