@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { Section } from "@/components/sections/Section";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { IntakeForm } from "@/components/IntakeForm";
-import { ChatButton } from "@/components/ChatButton";
+import { GetStartedButton } from "@/components/GetStartedButton";
 import { buildMetadata } from "@/lib/seo";
 import { type IntakeIntent } from "@/data/intake";
 
@@ -125,12 +125,17 @@ export default function GetStartedPage({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-success" />
                 </span>
-                Rather not wait? We&apos;re online now.
+                Rather not wait?
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Start a live chat and talk to a real specialist right away.
+                Use the live chat in the corner to talk to a specialist now, or
+                start a conversation with our team.
               </p>
-              <ChatButton label="Chat with us" size="default" className="mt-4 w-full" />
+              <GetStartedButton
+                label="Talk to us"
+                size="default"
+                className="mt-4 w-full"
+              />
             </div>
           </aside>
 

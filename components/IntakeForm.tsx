@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ChatButton } from "@/components/ChatButton";
+import { GetStartedButton } from "@/components/GetStartedButton";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -257,7 +257,7 @@ export function IntakeForm({
           method. If it&apos;s urgent, talk to us right now.
         </p>
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
-          <ChatButton label="Chat with an expert now" />
+          <GetStartedButton label="Talk to us now" />
         </div>
         <p className="mt-4 text-xs text-muted-foreground">
           Demo only, your details were not sent anywhere yet.

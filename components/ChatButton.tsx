@@ -63,14 +63,15 @@ export function ChatButton({
       className={className}
       onClick={openChat}
     >
-      {showDot ? (
-        <span className="relative inline-flex h-4 w-4 items-center justify-center" aria-hidden="true">
-          <MessageCircle className="absolute h-4 w-4 animate-ping opacity-45" />
-          <MessageCircle className="relative h-4 w-4" />
-        </span>
-      ) : (
+      <span className="relative inline-flex h-4 w-4 items-center justify-center" aria-hidden="true">
         <MessageCircle className="h-4 w-4" />
-      )}
+        {showDot && (
+          <span className="absolute -right-1 -top-1 flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-80" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-success" />
+          </span>
+        )}
+      </span>
       {label}
     </Button>
   );
