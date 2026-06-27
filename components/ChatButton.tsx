@@ -52,7 +52,7 @@ export function ChatButton({
   size?: ButtonProps["size"];
   variant?: ButtonProps["variant"];
   className?: string;
-  /** Show the pulsing "online" indicator dot. */
+  /** Show the pulsing chat indicator icon. */
   showDot?: boolean;
 }) {
   return (
@@ -64,9 +64,9 @@ export function ChatButton({
       onClick={openChat}
     >
       {showDot ? (
-        <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-60" />
-          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-current" />
+        <span className="relative inline-flex h-4 w-4 items-center justify-center" aria-hidden="true">
+          <MessageCircle className="absolute h-4 w-4 animate-ping opacity-45" />
+          <MessageCircle className="relative h-4 w-4" />
         </span>
       ) : (
         <MessageCircle className="h-4 w-4" />
