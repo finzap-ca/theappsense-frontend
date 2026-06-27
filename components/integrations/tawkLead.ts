@@ -8,6 +8,7 @@ export interface MalwareLeadPayload {
   website_url: string;
   email: string;
   issue: string;
+  name?: string;
   phone?: string;
   phone_country?: string;
 }
@@ -28,6 +29,9 @@ declare global {
 function compactAttributes(payload: MalwareLeadPayload): Record<string, string> {
   return Object.fromEntries(
     Object.entries({
+      // `name` and `email` are Tawk's recognised visitor keys, so the agent
+      // sees who they're talking to as soon as the chat opens.
+      name: payload.name,
       email: payload.email,
       website_url: payload.website_url,
       issue: payload.issue,

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ChatButton } from "@/components/ChatButton";
+import { GetStartedButton } from "@/components/GetStartedButton";
 import { primaryCta } from "@/data/navigation";
 
 /**
@@ -39,14 +39,10 @@ export function CtaSection({
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <ChatButton label="Chat with us" />
+              <GetStartedButton label="Get started" />
             </div>
-            <p className="mt-4 flex items-center gap-2 text-sm text-ink-muted">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
-              </span>
-              We&apos;re online and usually reply in minutes.
+            <p className="mt-4 text-sm text-ink-muted">
+              We reply to every enquiry within one business day.
             </p>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ChatButton } from "@/components/ChatButton";
+import { GetStartedButton } from "@/components/GetStartedButton";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/sections/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
@@ -77,7 +77,7 @@ export default async function HomePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <ChatButton label="Chat with us" />
+              <GetStartedButton label="Get started" />
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
               {[
@@ -282,7 +282,7 @@ export default async function HomePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <ChatButton label="Chat with us now" />
+              <GetStartedButton label="Get started" />
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">

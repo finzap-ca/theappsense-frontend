@@ -4,7 +4,7 @@ import { ArrowRight, Check, AlertTriangle } from "lucide-react";
 import { type Service } from "@/data/services";
 import { contactCta } from "@/data/navigation";
 import { Button } from "@/components/ui/button";
-import { ChatButton } from "@/components/ChatButton";
+import { GetStartedButton } from "@/components/GetStartedButton";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
 import { Breadcrumbs } from "./Breadcrumbs";
@@ -63,7 +63,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                     </Link>
                   </Button>
                 )}
-                <ChatButton label="Chat with us" />
+                <GetStartedButton label="Get started" />
               </div>
             </div>
 
@@ -174,7 +174,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 </Link>
               </Button>
             )}
-            <ChatButton label="Chat with an expert now" />
+            <GetStartedButton label="Get started" />
           </div>
         </Section>
       )}
