@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { SiteHeader, SiteFooter } from "@/components/layout/SiteChrome";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
@@ -57,11 +56,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <div className="flex min-h-screen flex-col">
-          <Header />
+          <SiteHeader />
           <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <SiteFooter />
         </div>
         <TawkToScript />
         <CookieConsent />

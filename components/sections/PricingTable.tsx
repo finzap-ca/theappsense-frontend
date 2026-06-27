@@ -9,15 +9,18 @@ import { cn } from "@/lib/utils";
 type Billing = "monthly" | "annual";
 
 /**
- * Pricing grid with a monthly/annual billing toggle. Annual is the default
- * (it's the better-value option and what we want to anchor on).
+ * Pricing grid with a monthly/annual billing toggle (annual default) and an
+ * optional "hosted with us" bundle-discount switch, shown only when a plan
+ * actually offers a bundle price.
  */
 export function PricingTable({ plans }: { plans: PricingPlan[] }) {
   const [billing, setBilling] = useState<Billing>("annual");
+  const [bundle, setBundle] = useState(false);
+  const hasBundle = plans.some((p) => p.monthlyBundlePrice);
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex flex-col items-center gap-4">
         <div
           role="radiogroup"
           aria-label="Billing period"
@@ -41,14 +44,7 @@ export function PricingTable({ plans }: { plans: PricingPlan[] }) {
               >
                 {option === "monthly" ? "Monthly" : "Annual"}
                 {option === "annual" && (
-                  <span
-                    className={cn(
-                      "rounded-full px-1.5 py-0.5 text-xs font-semibold",
-                      active
-                        ? "bg-success/15 text-success"
-                        : "bg-success/10 text-success",
-                    )}
-                  >
+                  <span className="rounded-full bg-success/15 px-1.5 py-0.5 text-xs font-semibold text-success">
                     Save 20%
                   </span>
                 )}
@@ -56,11 +52,38 @@ export function PricingTable({ plans }: { plans: PricingPlan[] }) {
             );
           })}
         </div>
+
+        {hasBundle && (
+          <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-full border border-border bg-card px-4 py-1.5 text-sm">
+            <input
+              type="checkbox"
+              checked={bundle}
+              onChange={(e) => setBundle(e.target.checked)}
+              className="h-4 w-4 rounded border-input text-primary focus-visible:ring-2 focus-visible:ring-ring"
+            />
+            <span className="font-medium text-foreground">
+              Host with us
+            </span>
+            <span className="rounded-full bg-success/15 px-1.5 py-0.5 text-xs font-semibold text-success">
+              Save $20/mo
+            </span>
+          </label>
+        )}
       </div>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+      <div
+        className={cn(
+          "mt-10 grid gap-6 sm:grid-cols-2",
+          plans.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3",
+        )}
+      >
         {plans.map((plan) => (
-          <PricingCard key={plan.name} plan={plan} billing={billing} />
+          <PricingCard
+            key={plan.name}
+            plan={plan}
+            billing={billing}
+            bundle={bundle}
+          />
         ))}
       </div>
     </div>
