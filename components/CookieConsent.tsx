@@ -70,7 +70,7 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed bottom-4 left-4 right-4 z-[60] rounded-xl border border-border bg-card p-4 shadow-lg sm:right-auto sm:max-w-md"
+      className="fixed bottom-4 left-1/2 z-[60] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-xl border border-border bg-card p-4 shadow-lg"
     >
       <p className="text-sm leading-relaxed text-foreground">
         We use cookies to run live chat and to understand how the site is used
