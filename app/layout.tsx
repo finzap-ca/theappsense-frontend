@@ -9,6 +9,7 @@ import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
 import { company } from "@/data/site";
 import { TawkToScript } from "@/components/integrations/TawkToScript";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <TawkToScript />
+        <CookieConsent />
       </body>
     </html>
   );
