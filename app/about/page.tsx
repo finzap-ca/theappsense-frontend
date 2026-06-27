@@ -92,10 +92,10 @@ export default function AboutPage() {
             </p>
             <h2>Who we work with</h2>
             <p>
-              Small and growing businesses across Canada and the United States,
-              the kind that depend on their website but don&apos;t have an
-              in-house developer to keep it running. We become that team,
-              without the cost of hiring one.
+              Small and growing businesses around the world, the kind that
+              depend on their website but don&apos;t have an in-house developer
+              to keep it running. We become that team, without the cost of
+              hiring one.
             </p>
           </div>
 
@@ -136,10 +136,10 @@ export default function AboutPage() {
         </div>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {[
-            "Fixed quotes and realistic timelines, agreed before we start",
+            "Predictable pricing and free migration, no surprises",
             "You own the code, content, and hosting account outright",
             "Updates in plain language, not developer jargon",
-            "A real person on support during business hours",
+            "A real person on support, plus 24/7 live chat",
           ].map((item) => (
             <li key={item} className="flex items-start gap-2 text-sm text-foreground/90">
               <Check className="mt-0.5 h-5 w-5 shrink-0 text-success" />
@@ -151,7 +151,7 @@ export default function AboutPage() {
 
       {/* Process */}
       <Section>
-        <SectionHeading eyebrow="Our process" title="How an engagement runs" />
+        <SectionHeading eyebrow="Our process" title="What working with us looks like" />
         <div className="mt-12">
           <ProcessSteps steps={engagementProcess} />
         </div>

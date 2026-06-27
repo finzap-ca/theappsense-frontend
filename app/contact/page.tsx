@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, Clock, MapPin, LifeBuoy, ArrowRight } from "lucide-react";
+import { Phone, Clock, MapPin, LifeBuoy, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/sections/Section";
@@ -74,18 +74,6 @@ export default function ContactPage() {
               </h2>
               <ul className="mt-4 space-y-4 text-sm">
                 <li className="flex items-start gap-3">
-                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <a
-                      href={`mailto:${company.email}`}
-                      className="text-muted-foreground hover:text-primary"
-                    >
-                      {company.email}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
@@ -109,8 +97,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium text-foreground">Where we are</p>
                     <p className="text-muted-foreground">
-                      Greater Toronto Area, serving clients across Canada and the
-                      U.S.
+                      Greater Toronto Area, Canada.
                     </p>
                   </div>
                 </li>

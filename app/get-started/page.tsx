@@ -1,10 +1,10 @@
-import { Phone, Clock, Check, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { Section } from "@/components/sections/Section";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { IntakeForm } from "@/components/IntakeForm";
+import { ChatButton } from "@/components/ChatButton";
 import { buildMetadata } from "@/lib/seo";
-import { company } from "@/data/site";
 import { type IntakeIntent } from "@/data/intake";
 
 export const metadata = buildMetadata({
@@ -121,20 +121,16 @@ export default function GetStartedPage({
 
             <div className="mt-8 rounded-xl border border-border bg-card p-5">
               <p className="flex items-center gap-2 text-sm font-medium text-foreground">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                Rather talk to someone now?
+                <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-success" />
+                </span>
+                Rather not wait? We&apos;re online now.
               </p>
-              <a
-                href={`tel:${company.phoneHref}`}
-                className="mt-2 flex items-center gap-2 font-display text-lg font-bold text-foreground hover:text-primary"
-              >
-                <Phone className="h-4 w-4 text-primary" />
-                {company.phone}
-              </a>
-              <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Clock className="h-3.5 w-3.5" />
-                {company.hours}
+              <p className="mt-1 text-sm text-muted-foreground">
+                Start a live chat and talk to a real specialist right away.
               </p>
+              <ChatButton label="Chat with us" size="default" className="mt-4 w-full" />
             </div>
           </aside>
 

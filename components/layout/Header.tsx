@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, LifeBuoy, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, LifeBuoy, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { ChatButton } from "@/components/ChatButton";
 import { Logo } from "./Logo";
 import { primaryNav, primaryCta } from "@/data/navigation";
-import { company } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 function isActive(pathname: string, href: string): boolean {
@@ -144,19 +144,8 @@ export function Header() {
         </nav>
 
         {/* Desktop actions */}
-        <div className="hidden items-center gap-1 lg:flex">
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/get-started">
-              <LifeBuoy className="h-4 w-4" />
-              Get help
-            </Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <a href={`tel:${company.phoneHref}`}>
-              <Phone className="h-4 w-4" />
-              <span className="hidden xl:inline">{company.phone}</span>
-            </a>
-          </Button>
+        <div className="hidden items-center gap-2 lg:flex">
+          <ChatButton label="Chat with us" size="sm" />
           <Button asChild size="sm">
             <Link href={primaryCta.href}>{primaryCta.label}</Link>
           </Button>
@@ -220,17 +209,12 @@ export function Header() {
               ),
             )}
             <div className="mt-3 flex flex-col gap-2 border-t border-border pt-4">
+              <ChatButton label="Chat with us" size="default" className="w-full" />
               <Button asChild variant="outline">
                 <Link href="/get-started">
                   <LifeBuoy className="h-4 w-4" />
                   Get help with my site
                 </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <a href={`tel:${company.phoneHref}`}>
-                  <Phone className="h-4 w-4" />
-                  {company.phone}
-                </a>
               </Button>
               <Button asChild>
                 <Link href={primaryCta.href}>{primaryCta.label}</Link>

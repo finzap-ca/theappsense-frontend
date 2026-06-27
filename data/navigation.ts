@@ -87,7 +87,7 @@ export const footerNav: { title: string; links: NavChild[] }[] = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Our work", href: "/work" },
+      { label: "Our clients", href: "/clients" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
     ],
@@ -98,7 +98,7 @@ export const footerNav: { title: string; links: NavChild[] }[] = [
       { label: "See hosting plans", href: `${HOSTING_HREF}#pricing` },
       { label: "Get help with my site", href: "/get-started" },
       { label: "Fix a hacked site", href: "/get-started?intent=malware" },
-      { label: "Request a quote", href: "/contact" },
+      { label: "Talk to us", href: "/contact" },
     ],
   },
 ];
@@ -107,4 +107,4 @@ export const footerNav: { title: string; links: NavChild[] }[] = [
 export const primaryCta = { label: "See hosting plans", href: `${HOSTING_HREF}#pricing` };
 
 /** Contextual conversion CTA used on service pages and closing CTA bands. */
-export const contactCta = { label: "Request a quote", href: "/contact" };
+export const contactCta = { label: "Talk to us", href: "/contact" };

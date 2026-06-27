@@ -25,7 +25,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "Where are you based, and who do you work with?",
     answer:
-      "We're based in the Greater Toronto Area and work with clients across Canada and the United States. Projects run remotely, with clear communication and predictable timelines.",
+      "We're based in the Greater Toronto Area in Canada and work with clients worldwide. Everything runs remotely, with clear communication and a real person a click away on live chat.",
   },
   {
     question: "What if my site is already built, can you still help?",
