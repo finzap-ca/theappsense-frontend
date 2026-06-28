@@ -42,3 +42,10 @@ export const HAS_TAWK = TAWK_PROPERTY_ID.length > 0 && TAWK_WIDGET_ID.length > 0
 /** Google Tag Manager container identifier. Optional until production env is set. */
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 export const HAS_GTM = GTM_ID.length > 0;
+
+/** Protected WordPress REST endpoint used by the frontend server route for lead capture. */
+export const WORDPRESS_LEAD_CAPTURE_ENDPOINT =
+  process.env.WORDPRESS_LEAD_CAPTURE_ENDPOINT ??
+  "http://theappsense-wp/wp-json/theappsense/v1/malware-scan-requests";
+export const WORDPRESS_LEAD_CAPTURE_SECRET =
+  process.env.WORDPRESS_LEAD_CAPTURE_SECRET ?? "";

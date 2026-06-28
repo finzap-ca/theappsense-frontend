@@ -64,9 +64,13 @@ testimonials, pricing, team, global contact info, reusable CTAs.
 Google Tag Manager is optional and controlled by `NEXT_PUBLIC_GTM_ID`. When set,
 the app loads GTM globally and exposes `window.dataLayer` for conversion events.
 
-The malware landing page form pushes a GA4-style `generate_lead` payload and
-passes the same validated lead context into Tawk.to before opening chat. Phone is
-optional and uses browser-locale country detection with a manual selector.
+The malware landing page form submits validated requests to the frontend API at
+`/api/malware-scan-requests`, which creates a private WordPress `Free Malware
+Scan Request` CPT entry through a protected REST endpoint. Only after WordPress
+confirms capture does the browser push `generate_lead` and
+`malware_scan_submit_success`, then pass the same lead context into Tawk.to and
+open chat. Phone is optional and uses browser-locale country detection with a
+manual selector.
 
 ## Known remaining integrations
 

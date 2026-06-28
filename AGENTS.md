@@ -25,7 +25,7 @@ Operational guide for the TheAppSense V2 frontend in `/opt/easyengine/sites/thea
 - Tawk.to live chat is loaded on the public frontend through `components/integrations/TawkToScript.tsx`.
 - Current Tawk.to IDs: property `66a568b032dca6db2cb69ea2`, widget `1i3r21sll`.
 - Override with `NEXT_PUBLIC_TAWK_PROPERTY_ID` and `NEXT_PUBLIC_TAWK_WIDGET_ID` in `.env.local`.
-- GTM is loaded only when `NEXT_PUBLIC_GTM_ID` is set. The malware LP form sends `generate_lead` to `dataLayer` and attaches the validated lead context to Tawk.to before opening chat.
+- GTM is loaded only when `NEXT_PUBLIC_GTM_ID` is set. The malware LP form saves to WordPress first, then sends `generate_lead` and `malware_scan_submit_success` to `dataLayer` and attaches the lead context to Tawk.to before opening chat.
 
 ## GitHub Deploy Key
 - Private key: `/opt/easyengine/sites/theappsense-frontend/.deploy_key` (mode `600`).
@@ -41,6 +41,7 @@ Operational guide for the TheAppSense V2 frontend in `/opt/easyengine/sites/thea
 - Keep `theappsense.com` crawlable through `/robots.txt` and `/sitemap.xml`; `/api/` is excluded from crawling.
 
 ## Changelog
+- 2026-06-29: Added WordPress-backed Free Malware Scan Request capture before malware LP conversion/Tawk success handling.
 - 2026-06-27: Added optional GTM integration and malware landing page lead handoff to Tawk.to, including optional phone/country capture.
 - 2026-06-26: Published crawlable public robots/sitemap policy and kept the WordPress host noindexed.
 - 2026-06-26: Updated team LinkedIn profiles and moved the About link to footer-only navigation.
