@@ -25,6 +25,15 @@ const config: Config = {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
+      /* Reading-text scale, nudged up ~1px from Tailwind's defaults so body
+         copy, captions, and UI labels read comfortably. Display/heading sizes
+         (xl and up) keep their defaults so the layout proportions hold. */
+      fontSize: {
+        xs: ["0.8125rem", { lineHeight: "1.125rem" }], // 13px (was 12px)
+        sm: ["0.9375rem", { lineHeight: "1.375rem" }], // 15px (was 14px)
+        base: ["1.125rem", { lineHeight: "1.7rem" }], // 18px (was 16px)
+        lg: ["1.25rem", { lineHeight: "1.9rem" }], // 20px (was 18px)
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
