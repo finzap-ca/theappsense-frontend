@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 import { SiteHeader, SiteFooter } from "@/components/layout/SiteChrome";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/env";
@@ -60,7 +61,7 @@ export default function RootLayout({
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main id="main" className="flex-1">
-            {children}
+            <PageTransition>{children}</PageTransition>
           </main>
           <SiteFooter />
         </div>

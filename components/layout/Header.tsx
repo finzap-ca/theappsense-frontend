@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, LifeBuoy, Menu, X } from "lucide-react";
+import { ChevronDown, LifeBuoy } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { GetStartedButton } from "@/components/GetStartedButton";
@@ -151,21 +151,40 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle: three bars that morph into an X. */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-accent lg:hidden"
+          className="group inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-accent lg:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <span className="relative block h-4 w-6" aria-hidden="true">
+            <span
+              className={cn(
+                "absolute left-0 block h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ease-out",
+                mobileOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute left-0 top-1/2 block h-0.5 w-6 -translate-y-1/2 rounded-full bg-current transition-opacity duration-200 ease-out",
+                mobileOpen ? "opacity-0" : "opacity-100",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute left-0 block h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ease-out",
+                mobileOpen ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0",
+              )}
+            />
+          </span>
         </button>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div className="animate-menu-in border-t border-border bg-background lg:hidden">
           <nav
             className="container flex max-h-[calc(100vh-4rem)] flex-col gap-1 overflow-y-auto py-4"
             aria-label="Mobile"
