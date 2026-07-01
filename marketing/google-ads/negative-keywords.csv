@@ -1,0 +1,28 @@
+Shared Set,Negative Keyword,Match Type,Reason
+WP Junk Filter,wordpress.com,Phrase,Repels WordPress.com users wanting free .com billing/account help
+WP Junk Filter,wordpress com,Phrase,WordPress.com confusion
+WP Junk Filter,automattic,Phrase,WordPress.com parent company
+WP Junk Filter,wp.com,Phrase,WordPress.com confusion
+WP Junk Filter,billing,Broad,Account/billing seekers = not buyers
+WP Junk Filter,refund,Broad,Account/billing seekers
+WP Junk Filter,cancel subscription,Phrase,Account/billing seekers
+WP Junk Filter,reset password,Phrase,Free self-service seekers
+WP Junk Filter,password reset,Phrase,Free self-service seekers
+WP Junk Filter,forgot password,Phrase,Free self-service seekers
+WP Junk Filter,how to log in,Phrase,Free self-service seekers
+WP Junk Filter,free,Broad,Free-support seekers = not buyers
+WP Junk Filter,for free,Phrase,Free-support seekers
+WP Junk Filter,tutorial,Broad,DIY learners = not buyers
+WP Junk Filter,how to,Broad,DIY learners = not buyers
+WP Junk Filter,step by step,Phrase,DIY learners
+WP Junk Filter,course,Broad,DIY learners
+WP Junk Filter,learn wordpress,Phrase,DIY learners
+WP Junk Filter,download,Broad,Software/plugin download seekers
+WP Junk Filter,forum,Broad,Free community-support seekers
+WP Junk Filter,jobs,Broad,Job/career seekers
+WP Junk Filter,job,Broad,Job/career seekers
+WP Junk Filter,salary,Broad,Job/career seekers
+WP Junk Filter,career,Broad,Job/career seekers
+WP Junk Filter,hiring,Broad,Job/career seekers
+WP Junk Filter,coupon,Broad,Deal seekers
+WP Junk Filter,nulled,Broad,Piracy seekers

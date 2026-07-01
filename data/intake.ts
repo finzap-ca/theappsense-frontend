@@ -106,6 +106,23 @@ export const backupOptions: Choice[] = [
   { value: "unsure", label: "Not sure" },
 ];
 
+/**
+ * Step 1 options for the general "WordPress help & support" LP. Broader than
+ * the malware/errors intents — this persona wants a real person, not a
+ * specific error triaged. Keep the wording in the visitor's own voice.
+ */
+export const supportIssueOptions: Choice[] = [
+  { value: "broken", label: "Something's broken and I need it fixed" },
+  { value: "changes", label: "I need edits or changes made to my site" },
+  { value: "slow", label: "My site is slow" },
+  { value: "security", label: "Security — it may be hacked" },
+  { value: "locked-out", label: "I'm locked out / can't log in" },
+  { value: "migrate", label: "Move my site to a new host" },
+  { value: "ongoing", label: "I want someone to manage it for me" },
+  { value: "guidance", label: "I just need someone to explain what to do" },
+  { value: "other", label: "Something else" },
+];
+
 export const contactPreferenceOptions: Choice[] = [
   { value: "chat", label: "Live chat now" },
   { value: "email", label: "Email" },

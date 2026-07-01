@@ -1,0 +1,116 @@
+{
+  "exportFormatVersion": 2,
+  "_comment": "Import into your GTM web container: Admin > Import Container > choose this file > Workspace: Existing/New > Merge (Overwrite conflicting). REPLACE the two placeholders before publishing: AW-CONVERSION_ID and CONVERSION_LABEL come from the Google Ads conversion action you create (Tools > Conversions > + New > Website OR Import). See ../README.md.",
+  "containerVersion": {
+    "container": {
+      "name": "TheAppSense",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": ["WEB"],
+      "fingerprint": "0"
+    },
+    "tag": [
+      {
+        "name": "Google Ads - Conversion Linker",
+        "type": "gclidw",
+        "firingTriggerId": ["2147479553"],
+        "parameter": [
+          { "type": "BOOLEAN", "key": "enableCrossDomain", "value": "false" }
+        ],
+        "notes": "Reads and stores the gclid so conversions (and offline imports) attribute correctly. Fires on all pages."
+      },
+      {
+        "name": "Google Ads - Lead Conversion (generate_lead)",
+        "type": "awct",
+        "firingTriggerId": ["10000001"],
+        "parameter": [
+          { "type": "TEMPLATE", "key": "conversionId", "value": "AW-CONVERSION_ID" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "CONVERSION_LABEL_LEAD" },
+          { "type": "TEMPLATE", "key": "conversionValue", "value": "1.0" },
+          { "type": "TEMPLATE", "key": "currencyCode", "value": "USD" },
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" }
+        ],
+        "notes": "Fires when the LP lead form pushes generate_lead (form submit). Secondary signal — many visitors chat without submitting the form."
+      },
+      {
+        "name": "Google Ads - Chat Started Conversion (tawk_chat_started)",
+        "type": "awct",
+        "firingTriggerId": ["10000002"],
+        "parameter": [
+          { "type": "TEMPLATE", "key": "conversionId", "value": "AW-CONVERSION_ID" },
+          { "type": "TEMPLATE", "key": "conversionLabel", "value": "CONVERSION_LABEL_CHAT" },
+          { "type": "TEMPLATE", "key": "conversionValue", "value": "1.0" },
+          { "type": "TEMPLATE", "key": "currencyCode", "value": "USD" },
+          { "type": "BOOLEAN", "key": "enableConversionLinker", "value": "true" }
+        ],
+        "notes": "Fires on the tawk_chat_started dataLayer event from TawkToScript.tsx (registered beforeInteractive, before the Tawk widget loads). PRIMARY signal for the chat-first LPs — captures visitors who open chat without ever filling the form. Includes some junk (WordPress.com billing); qualify downstream and use offline import for revenue."
+      }
+    ],
+    "trigger": [
+      {
+        "name": "CE - generate_lead",
+        "triggerId": "10000001",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "generate_lead" }
+            ]
+          }
+        ],
+        "notes": "Matches the dataLayer.push({ event: 'generate_lead', ... }) fired by components/lp/LpLeadForm.tsx on successful submit."
+      },
+      {
+        "name": "CE - tawk_chat_started",
+        "triggerId": "10000002",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "tawk_chat_started" }
+            ]
+          }
+        ],
+        "notes": "Matches the dataLayer.push({ event: 'tawk_chat_started', ... }) fired by components/integrations/TawkToScript.tsx when a Tawk chat begins."
+      }
+    ],
+    "variable": [
+      {
+        "name": "DLV - lead_source",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "lead_source" }
+        ],
+        "notes": "e.g. wordpress_help_support_lp / fix_wordpress_errors_lp. Use to segment conversions per campaign in GA4/Looker."
+      },
+      {
+        "name": "DLV - service",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "service" }
+        ]
+      },
+      {
+        "name": "DLV - page_path",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "page_path" }
+        ]
+      },
+      {
+        "name": "DLV - gclid",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "gclid" }
+        ]
+      }
+    ]
+  }
+}
